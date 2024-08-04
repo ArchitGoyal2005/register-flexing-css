@@ -3,7 +3,6 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSignUp } from '@clerk/nextjs';
 
-
 interface IFormInputs {
   rollNumber: string;
   name: string;
@@ -12,6 +11,7 @@ interface IFormInputs {
   branch: string;
   course: string;
   year: number;
+  dob: string;
 }
 
 function Register() {
@@ -20,17 +20,16 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-    trigger,
     getValues,
   } = useForm<IFormInputs>();
 
   const onSubmit: SubmitHandler<IFormInputs> = async () => {
-    console.log("hii");
-    console.log(getValues("email"), getValues("password"));
+    const email = getValues("email");
+    const dob = getValues("dob"); // Using DOB as password
     signUp
       .create({
-        username: getValues("email"),
-        password: getValues("password"),
+        username: email,
+        password: dob,
         unsafeMetadata: {
           contact: getValues("PhoneNumber"),
           name: getValues("name"),
@@ -47,9 +46,9 @@ function Register() {
     <div className='flex items-center justify-center min-h-screen'>
       <div className='mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10'>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <h1 className='text-black text-center text-3xl'>Register <img src="manan.jpeg" alt="" /></h1>
+          <h1 className='text-black text-center text-3xl'>Register</h1>
           <div>
-            <label htmlFor="rollNumber" className="block text-sm font-medium text-gray-700">(userName)Roll Number</label>
+            <label htmlFor="rollNumber" className="block text-sm font-medium text-gray-700">(UserName)Roll Number</label>
             <input
               id="rollNumber"
               {...register('rollNumber', {
@@ -64,6 +63,16 @@ function Register() {
               className="text-black block w-full px-3 py-2 border border-gray-300 rounded-md"
             />
             {errors.rollNumber && <p className="text-red-500 text-xs">{errors.rollNumber.message}</p>}
+          </div>
+          <div>
+            <label htmlFor="dob" className="block text-sm font-medium text-gray-700">Password(Date of Birth)</label>
+            <input
+              id="dob"
+              type="date"
+              {...register('dob', { required: 'Date of Birth is required' })}
+              className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+            />
+            {errors.dob && <p className="text-red-500 text-xs">{errors.dob.message}</p>}
           </div>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
@@ -154,6 +163,6 @@ function Register() {
       </div>
     </div>
   );
-};
+}
 
 export default Register;
