@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,32 +17,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="icon" href="/favicon.ico" />
-          <title>{metadata.title}</title>
-        </head>
-        <body className={`${inter.className} bg-gray-100`}>
-          <div className="min-h-screen flex flex-col">
-            <header className="bg-customRed text-white py-4">
-              <div className="container mx-auto px-4">
-                <h1 className="text-3xl text-center font-bold">MANAN A TECHNO SURGE</h1>
-              </div>
-            </header>
+    <html lang="en">
+      <body className={`${inter.className} bg-gray-100`}>
+        <div className="min-h-screen flex flex-col">
+          <ClerkProvider>
             <main className="flex-grow container mx-auto px-4 py-6 bg-white shadow-md rounded-lg">
               {children}
             </main>
-            <footer className="bg-customRed text-white py-4">
-              <div className="container mx-auto px-4 text-center">
-                <p>© {new Date().getFullYear()} MANAN A TECHNO SURGE. All rights reserved.</p>
-              </div>
-            </footer>
-          </div>
-        </body>
-      </html>
-    </ClerkProvider>
+            <Toaster />
+          </ClerkProvider>
+        </div>
+      </body>
+    </html>
   );
 }
