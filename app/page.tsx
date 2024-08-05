@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSignUp } from "@clerk/nextjs";
 import Spinner from "./components/Spinner";
@@ -18,6 +18,7 @@ interface IFormInputs {
 
 function Register() {
   const { isLoaded, signUp, setActive } = useSignUp();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,6 +32,7 @@ function Register() {
 
   const onSubmit: SubmitHandler<IFormInputs> = async () => {
     try {
+      setIsSubmitting(true);
       const data = await signUp.create({
         username: `${getValues("name")[0]}-${getValues("rollNumber")}`,
         password: getValues("dob"),
@@ -48,13 +50,21 @@ function Register() {
       toast.success("Registered Successsfully!!!!");
     } catch (error) {
       toast.error("Sign up failed!! Please try again after some time!!");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          onSubmit={() => {
+            if (isSubmitting) return;
+            handleSubmit(onSubmit);
+          }}
+          className="space-y-4"
+        >
           <h1 className="text-black text-center text-3xl">Register</h1>
           <div>
             <label
@@ -255,6 +265,7 @@ function Register() {
           <button
             type="submit"
             className="text-white w-full py-2 px-4 bg-customRed rounded-md hover:bg-red-600"
+            disabled={isSubmitting}
           >
             Register
           </button>
