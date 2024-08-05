@@ -37,6 +37,7 @@ function Register() {
         emailAddress: getValues("email"),
         firstName: getValues("name"),
         unsafeMetadata: {
+          rollNumber: getValues("rollNumber"),
           contact: getValues("PhoneNumber"),
           branch: getValues("branch"),
           year: getValues("year"),
