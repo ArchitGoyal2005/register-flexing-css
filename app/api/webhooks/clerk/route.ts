@@ -59,23 +59,26 @@ export async function POST(req: Request) {
       evt.data;
     const { contact, branch, year, course, rollNumber } = unsafe_metadata;
 
-    const res = await fetch(`${process.env.BACKEND_URL}/api/v1/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        clerkId: id,
-        clerkUsername: username,
-        rollNumber,
-        branch,
-        year,
-        course,
-        name: first_name,
-        mobile: contact,
-        email: email_addresses[0],
-      }),
-    });
+    const res = await fetch(
+      `${process.env.BACKEND_URL}/api/v1/users/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clerkId: id,
+          clerkUsername: username,
+          rollNumber,
+          branch,
+          year,
+          course,
+          name: first_name,
+          mobile: contact,
+          email: email_addresses[0],
+        }),
+      }
+    );
 
     const { data } = await res.json();
 
