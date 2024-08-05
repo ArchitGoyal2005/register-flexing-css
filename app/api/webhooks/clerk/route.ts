@@ -59,6 +59,8 @@ export async function POST(req: Request) {
       evt.data;
     const { contact, branch, year, course, rollNumber } = unsafe_metadata;
 
+    console.log(username);
+
     const res = await fetch(
       `${process.env.BACKEND_URL}/api/v1/users/register`,
       {
@@ -75,7 +77,7 @@ export async function POST(req: Request) {
           course,
           name: first_name,
           mobile: contact,
-          email: email_addresses[0],
+          email: email_addresses[0].email_address,
         }),
       }
     );
