@@ -4,7 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { SignedIn, SignedOut, useSignUp } from "@clerk/nextjs";
 import Spinner from "./components/Spinner";
 import toast from "react-hot-toast";
+import Manan_Logo from "@/public/Manan_Logo.png"
 import Image from "next/image";
+import { ExternalLink } from 'lucide-react';
 
 interface IFormInputs {
   rollNumber: string;
@@ -62,13 +64,16 @@ function Register() {
       <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border shadow-lg border-black/10 min-h-[90vh]">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">
-            <p className="text-center  text-xs font-bold text-black">
+            <p className="text-center text-lg font-bold text-black">
               Manan - A Techno Surge
             </p>
-            <p className="text-center text-[0.7rem] text-black font-semibold">
+            <div className="flex justify-center">
+              <Image src={Manan_Logo} className="w-[100px] h-[100px]" alt="Manan - A Techno Surge" />
+            </div>
+            <p className="text-center text-xs text-black font-semibold">
               presents
             </p>
-            <h1 className="text-center text-3xl text-black font-semibold uppercase">
+            <h1 className="text-center text-3xl tracking-widest text-orange-600 font-semibold uppercase bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-purple-500">
               FlexMania
             </h1>
           </div>
@@ -295,18 +300,21 @@ function Register() {
             </button>
           </SignedOut>
           <SignedIn>
-            <h6 className="text-center text-black text-lg font-bold">
+            <h6 className="text-center text-black text-lg font-bold py-7">
               Welcome Onboard!!!!
             </h6>
-            <p className="text-gray-800">
+            <p className="text-green-600 font-semibold text-sm text-center pt-7">
               Join the WhatsApp group below for further information!!!
             </p>
             <p className="w-full text-center mt-4">
               <a
-                className="text-blue-400 text-center w-full text-lg underline"
+                className="text-blue-400 text-center w-full text-lg underline hover:text-blue-600"
                 href="https://chat.whatsapp.com/Ev9FOhxTA9R94ihDpmMFsJ"
               >
-                FlexMania{" "}
+                <span className="flex gap-2 items-center justify-center">
+                  <ExternalLink />
+                  FlexMania{" "}
+                </span>
               </a>
             </p>
           </SignedIn>
