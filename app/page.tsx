@@ -60,8 +60,8 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border shadow-lg border-black/10 min-h-[90vh]">
+    <div className="flex items-center justify-center">
+      <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border shadow-lg border-black/10">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">
             <p className="text-center text-lg font-bold text-black">
