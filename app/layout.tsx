@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-100`}>
         <div className="min-h-screen flex flex-col">
           <ClerkProvider>
-            <main className="flex-grow container mx-auto px-4 py-6 bg-white shadow-md rounded-lg">
+            <main className="flex-grow container mx-auto px-4 py-6 bg-white shadow-md">
               {children}
             </main>
             <Toaster />
