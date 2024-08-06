@@ -24,7 +24,7 @@ export default function RootLayout({
       </Head>
       <body className={`${inter.className} bg-cover bg-center`}>
         <div
-          className="w-full h-full bg-cover bg-center"
+          className="w-full h-full min-h-screen bg-cover bg-center"
           style={{ backgroundImage: "url('/background_image.jpeg')" }}
         >
           <div className=" flex flex-col">
