@@ -254,6 +254,7 @@ function Register() {
                 <option value="ECE">ECE</option>
                 <option value="ENC">ENC</option>
                 <option value="IOT">IOT</option>
+                <option value="ELECTRICAL">ELECTRICAL</option>
                 <option value="MECHANICAL">MECHANICAL</option>
                 <option value="CIVIL">CIVIL</option>
                 <option value="NA">Not Applicable</option>
