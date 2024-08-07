@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
+import Spinner from "./components/Spinner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,9 +30,14 @@ export default function RootLayout({
         >
           <div className=" flex flex-col">
             <ClerkProvider>
-              <main className="flex-grow container mx-auto px-4 py-6 shadow-md">
-                {children}
-              </main>
+              <ClerkLoading>
+                <Spinner />
+              </ClerkLoading>
+              <ClerkLoaded>
+                <main className="flex-grow container mx-auto px-4 py-6 shadow-md">
+                  {children}
+                </main>
+              </ClerkLoaded>
               <Toaster />
             </ClerkProvider>
           </div>

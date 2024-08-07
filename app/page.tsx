@@ -4,9 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { SignedIn, SignedOut, useSignUp } from "@clerk/nextjs";
 import Spinner from "./components/Spinner";
 import toast from "react-hot-toast";
-import Manan_Logo from "@/public/Manan_Logo.png"
+import Manan_Logo from "@/public/Manan_Logo.png";
 import Image from "next/image";
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink } from "lucide-react";
 
 interface IFormInputs {
   rollNumber: string;
@@ -51,7 +51,6 @@ function Register() {
         },
       });
       setActive({ session: data.createdSessionId });
-      toast.success("Registered Successsfully!!!!");
     } catch (error) {
       toast.error("Sign up failed!! Please try again after some time!!");
     } finally {
@@ -68,7 +67,11 @@ function Register() {
               Manan - A Techno Surge
             </p>
             <div className="flex justify-center">
-              <Image src={Manan_Logo} className="w-[100px] h-[100px]" alt="Manan - A Techno Surge" />
+              <Image
+                src={Manan_Logo}
+                className="w-[100px] h-[100px]"
+                alt="Manan - A Techno Surge"
+              />
             </div>
             <p className="text-center text-xs text-black font-semibold">
               presents

@@ -2,6 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { clerkClient, WebhookEvent } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import toast from "react-hot-toast";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -79,6 +80,12 @@ export async function POST(req: Request) {
         }),
       }
     );
+
+    if (!res.ok) {
+      toast.error("User Already exists!!!");
+      await clerkClient.users.deleteUser(id);
+      return NextResponse.json({ message: "User Already Exists" });
+    }
 
     const { data } = await res.json();
 
