@@ -82,7 +82,6 @@ export async function POST(req: Request) {
     );
 
     if (!res.ok) {
-      toast.error("User Already exists!!!");
       await clerkClient.users.deleteUser(id);
       return NextResponse.json({ message: "User Already Exists" });
     }
