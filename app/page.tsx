@@ -108,7 +108,7 @@ function Register() {
               </label>
               <input
                 id="rollNumber"
-                placeholder="Enter Your Roll Number"
+                placeholder="Enter Your Roll Number/JEE MAains Application Number"
                 {...register("rollNumber", {
                   required: "Roll Number is required",
                   validate: {
@@ -118,8 +118,8 @@ function Register() {
                       value.startsWith("24") ||
                       "Enter a valid roll number!!",
                     lengthIs11: (value) =>
-                      value.length === 11 ||
-                      "Roll Number must be 11 characters long",
+                      value.length === 11 || value.length===12||
+                      "Roll Number must be 11/12 characters long",
                     mustHaveOnlyDigits: (value) => {
                       const regex = /^\d+$/;
                       return (
@@ -198,7 +198,7 @@ function Register() {
               <input
                 id="email"
                 type="email"
-                placeholder="College E-mail Id"
+                placeholder="College E-mail Id : Roll/jeeAppNo@jcboseust.ac.in"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
