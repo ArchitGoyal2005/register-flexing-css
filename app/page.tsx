@@ -108,7 +108,7 @@ function Register() {
               </label>
               <input
                 id="rollNumber"
-                placeholder="Enter Your Roll Number/JEE MAains Application Number"
+                placeholder="Enter Your Roll Number/JEE Mains Application Number"
                 {...register("rollNumber", {
                   required: "Roll Number is required",
                   validate: {
