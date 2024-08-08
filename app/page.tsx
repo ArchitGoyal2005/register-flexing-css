@@ -198,7 +198,7 @@ function Register() {
               <input
                 id="email"
                 type="email"
-                placeholder="College Id Only"
+                placeholder="College E-mail Id"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
